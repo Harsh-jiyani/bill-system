@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 8px; border: 1px solid #ddd; text-align: center; }
+    </style>
+</head>
+<body>
+    <h2>Invoice</h2>
+    <p><strong>Client Name:</strong> {{ client }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+
+    <table>
+        <tr>
+            <th>Item</th><th>Price</th><th>Quantity</th><th>Subtotal</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.qty }}</td>
+            <td>{{ item.subtotal }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3"><strong>Total</strong></td>
+            <td><strong>{{ total }}</strong></td>
+        </tr>
+    </table>
+</body>
+</html>

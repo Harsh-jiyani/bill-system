@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Billing System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Generate Invoice</h2>
+        <form action="/generate-bill" method="POST">
+            <label>Client Name:</label>
+            <input type="text" name="client" required>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+
+            <div id="items">
+                <div class="item">
+                    <input type="text" name="item[]" placeholder="Item Name" required>
+                    <input type="number" name="price[]" placeholder="Price" step="0.01" required>
+                    <input type="number" name="quantity[]" placeholder="Quantity" required>
+                </div>
+            </div>
+
+            <button type="button" onclick="addItem()">Add Item</button>
+            <button type="submit">Download Bill</button>
+        </form>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <script>
+        function addItem() {
+            const container = document.getElementById('items');
+            const div = document.createElement('div');
+            div.classList.add('item');
+            div.innerHTML = `
+                <input type="text" name="item[]" placeholder="Item Name" required>
+                <input type="number" name="price[]" placeholder="Price" step="0.01" required>
+                <input type="number" name="quantity[]" placeholder="Quantity" required>
+            `;
+            container.appendChild(div);
+        }
+    </script>
+</body>
+</html>
